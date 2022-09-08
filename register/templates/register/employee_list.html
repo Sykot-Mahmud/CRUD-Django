@@ -1,0 +1,46 @@
+{% extends 'register/base.html' %}
+{% block content %}
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Full Name</td>
+            <td>Mobile Number</td>
+            <td>Position</td>
+            {% comment %} <td>Employee Code</td> {% endcomment %}
+            <td>
+                <a href="{%url 'employee-create' %}" class="btn btn-outline-success">
+                    <i class="fas fa-plus"></i>Add New
+                </a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for employee in employee_list %}
+        <tr>
+        <td>{{employee.fullname}}</td>
+        <td>{{employee.mobile_num}}</td>
+        <td>{{employee.position}}</td>
+        {% comment %} <td>{{employee.emp_code}}</td> {% endcomment %}
+        <td>
+            <a href="{%url 'employee-update' employee.id%}" class="btn text-secondary px-0">
+                <i class="far fa-edit fa-lg"></i>
+            </a>
+            {% comment %} <form action="{%url 'employee-delete' employee.id%}" method="post" style="display:inline">
+                {% csrf_token %}
+                <button type="submit" class="btn">
+                    <i class="far fa-trash-alt fa-lg text-danger"></i>
+                </button>
+            </form> {% endcomment %}
+        <a href="{%url 'employee-delete' employee.id%}">
+            
+                <i class="far fa-trash-alt fa-lg text-danger"></i>
+           
+        </a>
+        </td>
+       
+        
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
